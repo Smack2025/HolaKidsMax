@@ -1,0 +1,51 @@
+// Content types
+export interface Lesson {
+  id: string;
+  title: string;
+  description: string;
+  type: 'vocabulary' | 'grammar' | 'conversation';
+  difficulty: 'beginner' | 'intermediate' | 'advanced';
+  words?: string[];
+  phrases?: string[];
+}
+
+// Sample content
+export const lessons: Lesson[] = [
+  {
+    id: 'basic-greetings',
+    title: 'Basis Begroetingen',
+    description: 'Leer hoe je mensen in het Spaans begroet',
+    type: 'vocabulary',
+    difficulty: 'beginner',
+    words: ['¡Hola!', '¡Buenos días!', '¡Buenas tardes!', '¡Buenas noches!', '¡Adiós!'],
+  },
+  {
+    id: 'numbers-1-10',
+    title: 'Getallen 1-10',
+    description: 'Leer de basis getallen in het Spaans',
+    type: 'vocabulary',
+    difficulty: 'beginner',
+    words: ['uno', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez'],
+  },
+  {
+    id: 'colors',
+    title: 'Kleuren',
+    description: 'Leer de belangrijkste kleuren in het Spaans',
+    type: 'vocabulary',
+    difficulty: 'beginner',
+    words: ['rojo', 'azul', 'verde', 'amarillo', 'negro', 'blanco'],
+  },
+];
+
+// Helper functions
+export function getLessonById(id: string): Lesson | undefined {
+  return lessons.find(lesson => lesson.id === id);
+}
+
+export function getLessonsByType(type: Lesson['type']): Lesson[] {
+  return lessons.filter(lesson => lesson.type === type);
+}
+
+export function getLessonsByDifficulty(difficulty: Lesson['difficulty']): Lesson[] {
+  return lessons.filter(lesson => lesson.difficulty === difficulty);
+}
