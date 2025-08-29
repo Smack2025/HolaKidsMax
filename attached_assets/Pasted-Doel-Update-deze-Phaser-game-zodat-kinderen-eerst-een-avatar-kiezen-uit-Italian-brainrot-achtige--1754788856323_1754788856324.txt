@@ -1,0 +1,152 @@
+Doel: Update deze Phaser-game zodat kinderen eerst een avatar kiezen uit “Italian brainrot”-achtige (maar eigen IP) karakters. Voeg AvatarSelect toe, sla avatar in localStorage, toon gekozen avatar op de Map. Geen externen nodig.
+
+Randvoorwaarden
+
+Houd alle code in vanilla JS modules.
+
+Bestaat er al code? Idempotent werken: maak/overschrijf alleen de genoemde bestanden/regels.
+
+IP-veilig: géén kopieën van online afbeeldingen; gebruik placeholders of eigen SVG later.
+
+1) Bestandsstructuur (aanmaken/valideren)
+src/scenes/AvatarSelect.js
+
+src/data/characters.json
+
+Zorg dat deze al bestaan: src/main.js, src/scenes/{Boot.js,Menu.js,Map.js}, src/utils/storage.js, src/i18n/nl.json, assets/img/characters/ (map leeg is oké)
+
+2) src/utils/storage.js — uitbreiden met avatar
+Als KEY nog v1 is, upgrade naar v2 en voeg avatar:null toe:
+
+js
+Kopiëren
+Bewerken
+const KEY = 'silly_squad_progress_v2';
+export function loadProgress(){
+  try { return JSON.parse(localStorage.getItem(KEY)) || { themes:{}, settings:{subs:true,audio:true,dys:false}, avatar:null }; }
+  catch(e){ return { themes:{}, settings:{subs:true,audio:true,dys:false}, avatar:null }; }
+}
+export function saveProgress(p){ localStorage.setItem(KEY, JSON.stringify(p)); }
+3) src/data/characters.json — nieuwe karakters (eigen IP namen)
+Maak/overschrijf met:
+
+json
+Kopiëren
+Bewerken
+{
+  "characters": [
+    {"id":"tralalero_tralala","name":"Tralalero Tralala","desc_nl":"Haai met sneakers (grappig, niet eng).","color":"#eab308"},
+    {"id":"bombardiro_crocodilo","name":"Bombardiro Crocodilo","desc_nl":"Vrolijke krokodil met jas.","color":"#22c55e"},
+    {"id":"ballerina_cappuccina","name":"Ballerina Cappuccina","desc_nl":"Ballerina met kopje cappuccino-hoed.","color":"#f97316"},
+    {"id":"brr_brr_patapim","name":"Brr Brr Patapim","desc_nl":"Ritmeheld die bouncy beweegt.","color":"#38bdf8"},
+    {"id":"tung_tung_tung_sahur","name":"Tung Tung Tung Sahur","desc_nl":"Nachtwekker met belletje.","color":"#a855f7"},
+    {"id":"lirilì_larilà","name":"Lirilì Larilà","desc_nl":"Cactus-olifant mix (schattig).","color":"#10b981"},
+    {"id":"chimpanzini_bananini","name":"Chimpanzini Bananini","desc_nl":"Aap met bananenrugzak.","color":"#f59e0b"},
+    {"id":"trippi_troppi","name":"Trippi Troppi","desc_nl":"Katten-garnaal sidekick.","color":"#ef4444"}
+  ]
+}
+Afbeeldingen later in assets/img/characters/<id>.png plaatsen (optioneel). Nu worden gekleurde tegels getoond.
+
+4) src/scenes/AvatarSelect.js — nieuwe scene
+Maak/overschrijf met:
+
+js
+Kopiëren
+Bewerken
+import chars from '../data/characters.json' assert { type: 'json' };
+import nl from '../i18n/nl.json' assert { type: 'json' };
+import { loadProgress, saveProgress } from '../utils/storage.js';
+
+function hexToInt(h){ return parseInt(h.replace('#',''),16); }
+
+export default class AvatarSelect extends Phaser.Scene {
+  constructor(){ super('AvatarSelect'); }
+  create(){
+    const { width } = this.scale;
+    this.add.text(width/2, 50, nl.choose_avatar || 'Kies je held', { fontSize: 28 }).setOrigin(0.5);
+
+    const gridW=3, gapX=280, gapY=160, startX=width/2 - gapX, startY=120;
+    chars.characters.forEach((ch,i)=>{
+      const x = startX + (i%gridW)*gapX, y = startY + Math.floor(i/gridW)*gapY;
+      // Probeer image, anders fallback tile
+      const imgKey = `char_${ch.id}`;
+      const path = `assets/img/characters/${ch.id}.png`;
+      this.load.once(Phaser.Loader.Events.COMPLETE, ()=>{
+        if(this.textures.exists(imgKey)){
+          const spr = this.add.image(x,y,imgKey).setDisplaySize(150,150).setInteractive({useHandCursor:true});
+          spr.on('pointerdown', ()=> this.pick(ch.id));
+        } else {
+          const tile = this.add.rectangle(x,y,160,160,hexToInt(ch.color||'#14b8a6')).setStrokeStyle(4,0xffffff).setInteractive({useHandCursor:true});
+          tile.on('pointerdown', ()=> this.pick(ch.id));
+        }
+        this.add.text(x, y-105, ch.name, { fontSize: 16 }).setOrigin(0.5);
+        this.add.text(x, y+105, ch.desc_nl, { fontSize: 14, wordWrap:{width:180} }).setOrigin(0.5);
+      });
+      this.load.image(imgKey, path);
+    });
+    this.load.start();
+
+    this.add.text(40, 500, nl.back || 'Terug', { fontSize: 18 })
+      .setInteractive({useHandCursor:true})
+      .on('pointerdown', ()=> this.scene.start('Menu'));
+  }
+  pick(id){
+    const p = loadProgress(); p.avatar = id; saveProgress(p);
+    this.scene.start('Map');
+  }
+}
+5) src/i18n/nl.json — labels aanvullen
+Zorg dat deze keys bestaan:
+
+json
+Kopiëren
+Bewerken
+{
+  "choose_avatar": "Kies je held",
+  "back": "Terug"
+}
+6) src/main.js — scene registreren
+Importeer de nieuwe scene, voeg aan de scene-array toe na Menu:
+
+js
+Kopiëren
+Bewerken
+import AvatarSelect from './scenes/AvatarSelect.js';
+// ...
+scene: [Boot, Menu, AvatarSelect, Map, MiniGameMatch, MiniGameSpeak, MiniGameBuild, BossQuiz, Rewards],
+7) src/scenes/Menu.js — knop naar avatarselectie
+Vervang de Play-actie zodat deze naar AvatarSelect gaat:
+
+js
+Kopiëren
+Bewerken
+// huidige Play-knop:
+const play = this.addSpriteButton(width/2, height/2, nl.play, ()=> this.scene.start('AvatarSelect'));
+8) src/scenes/Map.js — gekozen avatar tonen (tekstueel)
+Toon bovenaan welke avatar gekozen is:
+
+js
+Kopiëren
+Bewerken
+import { loadProgress } from '../utils/storage.js';
+create(){
+  const p = loadProgress();
+  this.add.text(this.scale.width/2, 40, (p.avatar ? 'Held: '+p.avatar : 'Kies eerst je held'), { fontSize: 16 }).setOrigin(0.5);
+  // ... rest map code
+}
+9) Acceptatiecriteria (auto-check)
+App start → Menu → Kies je held → Map.
+
+Gekozen avatar wordt persistent opgeslagen (refresh behoudt keuze).
+
+Zonder images toont elke avatar een gekleurde tile; met assets/img/characters/<id>.png wordt de afbeelding getoond.
+
+Geen extra dependencies; werkt met Phaser CDN.
+
+10) IP-veiligheid
+Gebruik eigen illustraties; deze prompt gebruikt alleen namen + beschrijvingen en toont placeholders als er geen eigen PNG’s zijn.
+
+Geen import van externe (meme) assets.
+
+Voer de wijzigingen nu door. Start daarna de app en valideer de acceptatiecriteria.
+

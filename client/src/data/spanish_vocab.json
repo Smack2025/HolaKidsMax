@@ -1,0 +1,522 @@
+{
+  "themes": [
+    {
+      "id": "greetings",
+      "name_nl": "Begroetingen",
+      "name_es": "Saludos",
+      "items": [
+        {
+          "es": "hola",
+          "nl": "hallo",
+          "audio": "hola.mp3",
+          "img": "👋",
+          "type": "word"
+        },
+        {
+          "es": "adiós",
+          "nl": "doei",
+          "audio": "adios.mp3",
+          "img": "👋",
+          "type": "word"
+        },
+        {
+          "es": "buenos días",
+          "nl": "goedemorgen",
+          "audio": "buenos_dias.mp3",
+          "img": "🌅",
+          "type": "phrase"
+        },
+        {
+          "es": "buenas noches",
+          "nl": "goedenacht",
+          "audio": "buenas_noches.mp3",
+          "img": "🌙",
+          "type": "phrase"
+        },
+        {
+          "es": "¿Cómo te llamas?",
+          "nl": "Hoe heet jij?",
+          "audio": "como_te_llamas.mp3",
+          "img": "❓",
+          "type": "phrase"
+        },
+        {
+          "es": "Me llamo",
+          "nl": "Ik heet",
+          "audio": "me_llamo.mp3",
+          "img": "👤",
+          "type": "phrase"
+        },
+        {
+          "es": "gracias",
+          "nl": "dankjewel",
+          "audio": "gracias.mp3",
+          "img": "🙏",
+          "type": "word"
+        },
+        {
+          "es": "por favor",
+          "nl": "alsjeblieft",
+          "audio": "por_favor.mp3",
+          "img": "🤝",
+          "type": "phrase"
+        }
+      ]
+    },
+    {
+      "id": "numbers_1_10",
+      "name_nl": "Getallen 1–10",
+      "name_es": "Números 1–10",
+      "items": [
+        {
+          "es": "uno",
+          "nl": "een",
+          "audio": "uno.mp3",
+          "img": "1️⃣",
+          "type": "word"
+        },
+        {
+          "es": "dos",
+          "nl": "twee",
+          "audio": "dos.mp3",
+          "img": "2️⃣",
+          "type": "word"
+        },
+        {
+          "es": "tres",
+          "nl": "drie",
+          "audio": "tres.mp3",
+          "img": "3️⃣",
+          "type": "word"
+        },
+        {
+          "es": "cuatro",
+          "nl": "vier",
+          "audio": "cuatro.mp3",
+          "img": "4️⃣",
+          "type": "word"
+        },
+        {
+          "es": "cinco",
+          "nl": "vijf",
+          "audio": "cinco.mp3",
+          "img": "5️⃣",
+          "type": "word"
+        },
+        {
+          "es": "seis",
+          "nl": "zes",
+          "audio": "seis.mp3",
+          "img": "6️⃣",
+          "type": "word"
+        },
+        {
+          "es": "siete",
+          "nl": "zeven",
+          "audio": "siete.mp3",
+          "img": "7️⃣",
+          "type": "word"
+        },
+        {
+          "es": "ocho",
+          "nl": "acht",
+          "audio": "ocho.mp3",
+          "img": "8️⃣",
+          "type": "word"
+        },
+        {
+          "es": "nueve",
+          "nl": "negen",
+          "audio": "nueve.mp3",
+          "img": "9️⃣",
+          "type": "word"
+        },
+        {
+          "es": "diez",
+          "nl": "tien",
+          "audio": "diez.mp3",
+          "img": "🔟",
+          "type": "word"
+        }
+      ]
+    },
+    {
+      "id": "colors",
+      "name_nl": "Kleuren",
+      "name_es": "Colores",
+      "items": [
+        {
+          "es": "rojo",
+          "nl": "rood",
+          "audio": "rojo.mp3",
+          "img": "🔴",
+          "type": "word"
+        },
+        {
+          "es": "azul",
+          "nl": "blauw",
+          "audio": "azul.mp3",
+          "img": "🔵",
+          "type": "word"
+        },
+        {
+          "es": "verde",
+          "nl": "groen",
+          "audio": "verde.mp3",
+          "img": "🟢",
+          "type": "word"
+        },
+        {
+          "es": "amarillo",
+          "nl": "geel",
+          "audio": "amarillo.mp3",
+          "img": "🟡",
+          "type": "word"
+        },
+        {
+          "es": "negro",
+          "nl": "zwart",
+          "audio": "negro.mp3",
+          "img": "⚫",
+          "type": "word"
+        },
+        {
+          "es": "blanco",
+          "nl": "wit",
+          "audio": "blanco.mp3",
+          "img": "⚪",
+          "type": "word"
+        },
+        {
+          "es": "rosa",
+          "nl": "roze",
+          "audio": "rosa.mp3",
+          "img": "🩷",
+          "type": "word"
+        },
+        {
+          "es": "morado",
+          "nl": "paars",
+          "audio": "morado.mp3",
+          "img": "🟣",
+          "type": "word"
+        }
+      ]
+    },
+    {
+      "id": "animals",
+      "name_nl": "Dieren",
+      "name_es": "Animales",
+      "items": [
+        {
+          "es": "perro",
+          "nl": "hond",
+          "audio": "perro.mp3",
+          "img": "🐕",
+          "type": "word"
+        },
+        {
+          "es": "gato",
+          "nl": "kat",
+          "audio": "gato.mp3",
+          "img": "🐱",
+          "type": "word"
+        },
+        {
+          "es": "pájaro",
+          "nl": "vogel",
+          "audio": "pajaro.mp3",
+          "img": "🐦",
+          "type": "word"
+        },
+        {
+          "es": "pez",
+          "nl": "vis",
+          "audio": "pez.mp3",
+          "img": "🐠",
+          "type": "word"
+        },
+        {
+          "es": "conejo",
+          "nl": "konijn",
+          "audio": "conejo.mp3",
+          "img": "🐰",
+          "type": "word"
+        },
+        {
+          "es": "oso",
+          "nl": "beer",
+          "audio": "oso.mp3",
+          "img": "🐻",
+          "type": "word"
+        },
+        {
+          "es": "elefante",
+          "nl": "olifant",
+          "audio": "elefante.mp3",
+          "img": "🐘",
+          "type": "word"
+        },
+        {
+          "es": "jirafa",
+          "nl": "giraffe",
+          "audio": "jirafa.mp3",
+          "img": "🦒",
+          "type": "word"
+        },
+        {
+          "es": "león",
+          "nl": "leeuw",
+          "audio": "leon.mp3",
+          "img": "🦁",
+          "type": "word"
+        },
+        {
+          "es": "mariposa",
+          "nl": "vlinder",
+          "audio": "mariposa.mp3",
+          "img": "🦋",
+          "type": "word"
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "name_nl": "Eten",
+      "name_es": "Comida",
+      "items": [
+        {
+          "es": "pan",
+          "nl": "brood",
+          "audio": "pan.mp3",
+          "img": "🍞",
+          "type": "word"
+        },
+        {
+          "es": "agua",
+          "nl": "water",
+          "audio": "agua.mp3",
+          "img": "💧",
+          "type": "word"
+        },
+        {
+          "es": "leche",
+          "nl": "melk",
+          "audio": "leche.mp3",
+          "img": "🥛",
+          "type": "word"
+        },
+        {
+          "es": "manzana",
+          "nl": "appel",
+          "audio": "manzana.mp3",
+          "img": "🍎",
+          "type": "word"
+        },
+        {
+          "es": "plátano",
+          "nl": "banaan",
+          "audio": "platano.mp3",
+          "img": "🍌",
+          "type": "word"
+        },
+        {
+          "es": "naranja",
+          "nl": "sinaasappel",
+          "audio": "naranja.mp3",
+          "img": "🍊",
+          "type": "word"
+        },
+        {
+          "es": "queso",
+          "nl": "kaas",
+          "audio": "queso.mp3",
+          "img": "🧀",
+          "type": "word"
+        },
+        {
+          "es": "pizza",
+          "nl": "pizza",
+          "audio": "pizza.mp3",
+          "img": "🍕",
+          "type": "word"
+        },
+        {
+          "es": "helado",
+          "nl": "ijs",
+          "audio": "helado.mp3",
+          "img": "🍦",
+          "type": "word"
+        },
+        {
+          "es": "galleta",
+          "nl": "koekje",
+          "audio": "galleta.mp3",
+          "img": "🍪",
+          "type": "word"
+        }
+      ]
+    },
+    {
+      "id": "family",
+      "name_nl": "Familie",
+      "name_es": "Familia",
+      "items": [
+        {
+          "es": "mamá",
+          "nl": "mama",
+          "audio": "mama.mp3",
+          "img": "👩",
+          "type": "word"
+        },
+        {
+          "es": "papá",
+          "nl": "papa",
+          "audio": "papa.mp3",
+          "img": "👨",
+          "type": "word"
+        },
+        {
+          "es": "hermano",
+          "nl": "broer",
+          "audio": "hermano.mp3",
+          "img": "👦",
+          "type": "word"
+        },
+        {
+          "es": "hermana",
+          "nl": "zus",
+          "audio": "hermana.mp3",
+          "img": "👧",
+          "type": "word"
+        },
+        {
+          "es": "abuelo",
+          "nl": "opa",
+          "audio": "abuelo.mp3",
+          "img": "👴",
+          "type": "word"
+        },
+        {
+          "es": "abuela",
+          "nl": "oma",
+          "audio": "abuela.mp3",
+          "img": "👵",
+          "type": "word"
+        },
+        {
+          "es": "bebé",
+          "nl": "baby",
+          "audio": "bebe.mp3",
+          "img": "👶",
+          "type": "word"
+        },
+        {
+          "es": "familia",
+          "nl": "familie",
+          "audio": "familia.mp3",
+          "img": "👨‍👩‍👧‍👦",
+          "type": "word"
+        }
+      ]
+    },
+    {
+      "id": "body_parts",
+      "name_nl": "Lichaamsdelen",
+      "name_es": "Partes del cuerpo",
+      "items": [
+        {
+          "es": "cabeza",
+          "nl": "hoofd",
+          "audio": "cabeza.mp3",
+          "img": "🗣️",
+          "type": "word"
+        },
+        {
+          "es": "ojos",
+          "nl": "ogen",
+          "audio": "ojos.mp3",
+          "img": "👀",
+          "type": "word"
+        },
+        {
+          "es": "nariz",
+          "nl": "neus",
+          "audio": "nariz.mp3",
+          "img": "👃",
+          "type": "word"
+        },
+        {
+          "es": "boca",
+          "nl": "mond",
+          "audio": "boca.mp3",
+          "img": "👄",
+          "type": "word"
+        },
+        {
+          "es": "manos",
+          "nl": "handen",
+          "audio": "manos.mp3",
+          "img": "🙌",
+          "type": "word"
+        },
+        {
+          "es": "pies",
+          "nl": "voeten",
+          "audio": "pies.mp3",
+          "img": "🦶",
+          "type": "word"
+        }
+      ]
+    },
+    {
+      "id": "weather",
+      "name_nl": "Weer",
+      "name_es": "Tiempo",
+      "items": [
+        {
+          "es": "sol",
+          "nl": "zon",
+          "audio": "sol.mp3",
+          "img": "☀️",
+          "type": "word"
+        },
+        {
+          "es": "lluvia",
+          "nl": "regen",
+          "audio": "lluvia.mp3",
+          "img": "🌧️",
+          "type": "word"
+        },
+        {
+          "es": "nube",
+          "nl": "wolk",
+          "audio": "nube.mp3",
+          "img": "☁️",
+          "type": "word"
+        },
+        {
+          "es": "viento",
+          "nl": "wind",
+          "audio": "viento.mp3",
+          "img": "💨",
+          "type": "word"
+        },
+        {
+          "es": "nieve",
+          "nl": "sneeuw",
+          "audio": "nieve.mp3",
+          "img": "❄️",
+          "type": "word"
+        },
+        {
+          "es": "arcoíris",
+          "nl": "regenboog",
+          "audio": "arcoiris.mp3",
+          "img": "🌈",
+          "type": "word"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Comic+Neue:wght@400;700&family=Fredoka+One&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(244, 17%, 98%);
+  --foreground: hsl(208, 25%, 18%);
+  --card: hsl(244, 17%, 98%);
+  --card-foreground: hsl(208, 25%, 18%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(208, 25%, 18%);
+  --primary: hsl(0, 85%, 70%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(175, 65%, 58%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(220, 14%, 96%);
+  --muted-foreground: hsl(208, 25%, 18%);
+  --accent: hsl(50, 100%, 67%);
+  --accent-foreground: hsl(208, 25%, 18%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(220, 13%, 91%);
+  --input: hsl(220, 13%, 91%);
+  --ring: hsl(0, 85%, 70%);
+  --success: hsl(150, 60%, 75%);
+  --success-foreground: hsl(208, 25%, 18%);
+  --coral: hsl(0, 85%, 70%);
+  --mint: hsl(175, 65%, 58%);
+  --sunny: hsl(50, 100%, 67%);
+  --soft-white: hsl(244, 17%, 98%);
+  --friendly-dark: hsl(208, 25%, 18%);
+  --font-nunito: 'Nunito', sans-serif;
+  --font-comic: 'Comic Neue', cursive;
+  --font-fredoka: 'Fredoka One', cursive;
+  --radius: 1.5rem;
+}
+
+.dark {
+  --background: hsl(208, 25%, 10%);
+  --foreground: hsl(244, 17%, 90%);
+  --card: hsl(208, 25%, 12%);
+  --card-foreground: hsl(244, 17%, 90%);
+  --popover: hsl(208, 25%, 10%);
+  --popover-foreground: hsl(244, 17%, 90%);
+  --primary: hsl(0, 85%, 70%);
+  --primary-foreground: hsl(0, 0%, 100%);
+  --secondary: hsl(175, 65%, 58%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(208, 25%, 15%);
+  --muted-foreground: hsl(244, 17%, 60%);
+  --accent: hsl(50, 100%, 67%);
+  --accent-foreground: hsl(208, 25%, 10%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(208, 25%, 20%);
+  --input: hsl(208, 25%, 20%);
+  --ring: hsl(0, 85%, 70%);
+  --success: hsl(150, 60%, 75%);
+  --success-foreground: hsl(208, 25%, 10%);
+  --coral: hsl(0, 85%, 70%);
+  --mint: hsl(175, 65%, 58%);
+  --sunny: hsl(50, 100%, 67%);
+  --soft-white: hsl(208, 25%, 10%);
+  --friendly-dark: hsl(244, 17%, 90%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-nunito antialiased;
+  }
+}
+
+@layer utilities {
+  .font-nunito {
+    font-family: var(--font-nunito);
+  }
+  
+  .font-comic {
+    font-family: var(--font-comic);
+  }
+  
+  .font-fredoka {
+    font-family: var(--font-fredoka);
+  }
+  
+  .text-coral {
+    color: var(--coral);
+  }
+  
+  .text-mint {
+    color: var(--mint);
+  }
+  
+  .text-sunny {
+    color: var(--sunny);
+  }
+  
+  .text-friendly-dark {
+    color: var(--friendly-dark);
+  }
+  
+  .bg-coral {
+    background-color: var(--coral);
+  }
+  
+  .bg-mint {
+    background-color: var(--mint);
+  }
+  
+  .bg-sunny {
+    background-color: var(--sunny);
+  }
+  
+  .bg-soft-white {
+    background-color: var(--soft-white);
+  }
+  
+  .bg-success {
+    background-color: var(--success);
+  }
+  
+  .border-coral {
+    border-color: var(--coral);
+  }
+  
+  .border-mint {
+    border-color: var(--mint);
+  }
+  
+  .border-sunny {
+    border-color: var(--sunny);
+  }
+  
+  .border-success {
+    border-color: var(--success);
+  }
+}
+
+@keyframes wiggle {
+  0%, 7% { transform: rotateZ(0); }
+  15% { transform: rotateZ(-15deg); }
+  20% { transform: rotateZ(10deg); }
+  25% { transform: rotateZ(-10deg); }
+  30% { transform: rotateZ(6deg); }
+  35% { transform: rotateZ(-4deg); }
+  40%, 100% { transform: rotateZ(0); }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-wiggle {
+  animation: wiggle 1s ease-in-out infinite;
+}
+
+.animate-bounce-gentle {
+  animation: bounce-gentle 2s infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s infinite;
+}
+
+.character-card {
+  transition: transform 0.3s ease;
+}
+
+.character-card:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
+.lesson-card {
+  transition: all 0.3s ease;
+}
+
+.lesson-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.game-button {
+  transition: transform 0.2s ease;
+}
+
+.game-button:hover {
+  transform: scale(1.05);
+}
+
+.progress-fill {
+  transition: width 0.5s ease-in-out;
+}

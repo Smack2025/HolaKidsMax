@@ -1,0 +1,172 @@
+{
+  "title": "Max learning Spanish",
+  "navigation": {
+    "home": "Thuispagina",
+    "flashcards": "Flashcards",
+    "memory": "Memory Game",
+    "quiz": "Quiz",
+    "pronunciation": "Uitspraak",
+    "boss": "Boss Quiz",
+    "settings": "Instellingen"
+  },
+  "home": {
+    "title": "Leer Spaans!",
+    "subtitle": "Een leuke manier om Spaans te leren voor Nederlandse kinderen",
+    "welcome": "Welkom bij je Spaanse avontuur!",
+    "choose_game": "Kies een spel om te beginnen:",
+    "stats": {
+      "words_learned": "Woorden geleerd",
+      "accuracy": "Nauwkeurigheid",
+      "streak": "Huidige reeks",
+      "time_played": "Speeltijd"
+    }
+  },
+  "flashcards": {
+    "title": "Flashcards",
+    "subtitle": "Leer nieuwe Spaanse woorden",
+    "flip_card": "Klik om om te draaien",
+    "i_knew_it": "Ik wist het!",
+    "not_yet": "Nog niet",
+    "next_card": "Volgende kaart",
+    "well_done": "Goed gedaan!",
+    "review_complete": "Herziening voltooid!"
+  },
+  "memory": {
+    "title": "Memory Game",
+    "subtitle": "Match Spaanse woorden met plaatjes",
+    "attempts": "Pogingen",
+    "pairs_found": "Paren gevonden",
+    "great_job": "Geweldig gedaan!",
+    "play_again": "Opnieuw spelen"
+  },
+  "quiz": {
+    "title": "Quiz",
+    "subtitle": "Test je Spaanse woordenschat",
+    "question": "Vraag",
+    "of": "van",
+    "correct": "Juist!",
+    "incorrect": "Niet juist",
+    "final_score": "Eindresultaat",
+    "well_done": "Goed gedaan!",
+    "try_again": "Probeer opnieuw"
+  },
+  "pronunciation": {
+    "title": "Uitspraak Oefening",
+    "subtitle": "Oefen je Spaanse uitspraak",
+    "listen": "Luister",
+    "speak": "Spreek",
+    "listening": "Aan het luisteren...",
+    "excellent": "Uitstekend!",
+    "good_try": "Goede poging!",
+    "try_again": "Probeer opnieuw"
+  },
+  "boss": {
+    "title": "Boss Quiz",
+    "subtitle": "Toon je Spaanse meesterschap!",
+    "progress": "Voortgang",
+    "score": "Score",
+    "perfect_score": "Perfecte score!",
+    "boss_master": "Boss Meester!",
+    "try_harder": "Probeer het nog eens!",
+    "achievements_unlocked": "Prestaties ontgrendeld!"
+  },
+  "settings": {
+    "title": "Instellingen",
+    "audio": {
+      "title": "Geluid",
+      "mute": "Geluid dempen",
+      "subtitles": "Ondertitels tonen"
+    },
+    "accessibility": {
+      "title": "Toegankelijkheid",
+      "dyslexia_friendly": "Dyslexie-vriendelijk",
+      "font_size": "Lettergrootte",
+      "extra_time": "Extra tijd",
+      "font_sizes": {
+        "normal": "Normaal",
+        "large": "Groot",
+        "extra_large": "Extra groot"
+      }
+    },
+    "learning": {
+      "title": "Leren",
+      "show_hints": "Hints tonen",
+      "dutch_on_mistake": "Nederlands na 2 fouten",
+      "max_options": "Max antwoordopties"
+    },
+    "progress": {
+      "title": "Voortgang",
+      "export": "Voortgang exporteren voor ouders",
+      "export_description": "Download je leervoortgang als JSON-bestand"
+    },
+    "classroom_mode": {
+      "title": "Klaslokaal Modus",
+      "description": "Geluidsniveaus zijn verlaagd en het tempo is aangepast voor gebruik in de klas"
+    },
+    "close": "Sluiten"
+  },
+  "categories": {
+    "saludos": "Begroetingen",
+    "numeros": "Getallen", 
+    "animales": "Dieren",
+    "colores": "Kleuren",
+    "comida": "Eten"
+  },
+  "achievements": {
+    "first_word": "Eerste Woord",
+    "streak_5": "5 op een Rij",
+    "category_master": "Categorie Meester",
+    "perfect_score": "Perfecte Score",
+    "speed_demon": "Snelheidsdemon",
+    "pronunciation_pro": "Uitspraak Pro",
+    "memory_champion": "Memory Kampioen",
+    "quiz_master": "Quiz Meester"
+  },
+  "common": {
+    "loading": "Laden...",
+    "next": "Volgende",
+    "previous": "Vorige",
+    "start": "Start",
+    "continue": "Doorgaan",
+    "finish": "Voltooien",
+    "back": "Terug",
+    "menu": "Menu",
+    "play": "Spelen",
+    "pause": "Pauzeren",
+    "restart": "Herstarten",
+    "close": "Sluiten",
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "yes": "Ja",
+    "no": "Nee",
+    "ok": "Oké",
+    "error": "Fout",
+    "success": "Succes",
+    "ready": "Klaar",
+    "complete": "Voltooid"
+  },
+  "feedback": {
+    "correct": "Juist! Goed gedaan!",
+    "incorrect": "Niet juist. Probeer opnieuw!",
+    "excellent": "Uitstekend!",
+    "good": "Goed!",
+    "keep_trying": "Blijf proberen!",
+    "almost": "Bijna!",
+    "perfect": "Perfect!",
+    "congratulations": "Gefeliciteerd!"
+  },
+  "hints": {
+    "dutch_hint": "Nederlandse hint",
+    "category_hint": "Categorie hint",
+    "difficulty_reduced": "Moeilijkheid verlaagd - je kunt het!",
+    "listen_again": "Luister nog een keer",
+    "take_your_time": "Neem de tijd"
+  },
+  "errors": {
+    "audio_not_supported": "Audio wordt niet ondersteund in deze browser",
+    "speech_not_supported": "Spraakherkenning wordt niet ondersteund",
+    "microphone_error": "Microfoon toegang vereist",
+    "network_error": "Netwerkfout - probeer opnieuw",
+    "loading_error": "Fout bij laden - ververs de pagina"
+  }
+}
