@@ -91,7 +91,7 @@ export default function Flashcards() {
 
   if (isLoading) {
     return (
-      <GameLayout title={t('loading')} color="coral">
+      <GameLayout title={t('common.loading')} color="coral">
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin w-8 h-8 border-2 border-coral border-t-transparent rounded-full"></div>
         </div>
@@ -101,10 +101,10 @@ export default function Flashcards() {
 
   if (!currentWord) {
     return (
-      <GameLayout title="No Words Available" color="coral">
+      <GameLayout title={t('flashcards.no_words_title')} color="coral">
         <div className="text-center">
           <p className="font-nunito text-lg text-gray-600">
-            No vocabulary words found. Please try again later.
+            {t('flashcards.no_words_message')}
           </p>
         </div>
       </GameLayout>
@@ -278,7 +278,7 @@ export default function Flashcards() {
             variant="outline"
             className="rounded-2xl px-6 py-3"
           >
-            Previous
+            {t('common.previous')}
           </Button>
           
           <div className="flex space-x-2">
@@ -297,7 +297,7 @@ export default function Flashcards() {
             variant="outline"
             className="rounded-2xl px-6 py-3"
           >
-            Next
+            {t('common.next')}
           </Button>
         </div>
 
@@ -310,7 +310,7 @@ export default function Flashcards() {
         >
           <p className="font-nunito text-lg text-friendly-dark flex items-center">
             <Lightbulb className="text-sunny mr-2 w-5 h-5" />
-            Tip: Try to say the word out loud before flipping the card!
+            {t('flashcards.tip')}
           </p>
         </motion.div>
       </div>

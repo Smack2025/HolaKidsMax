@@ -9,7 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getRandomCharacter } from "@/lib/characters";
 import { audioManager } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
-import { useTranslation } from "@/lib/i18n";
+import { useTranslation, interpolate } from "@/lib/i18n";
 import type { VocabularyWord } from "@shared/schema";
 
 const DEFAULT_USER_ID = "default_user";
@@ -158,7 +158,7 @@ export default function MemoryGame() {
 
   if (isLoading) {
     return (
-      <GameLayout title="Loading Memory Game..." color="mint">
+      <GameLayout title={t('common.loading')} color="mint">
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin w-8 h-8 border-2 border-mint border-t-transparent rounded-full"></div>
         </div>
@@ -168,8 +168,8 @@ export default function MemoryGame() {
 
   return (
     <GameLayout
-      title="Memory Game"
-      subtitle="Match Spanish words with their pictures!"
+      title={t('memory.title')}
+      subtitle={t('memory.subtitle')}
       color="mint"
     >
       <div className="max-w-4xl mx-auto">
@@ -184,7 +184,7 @@ export default function MemoryGame() {
             <div className="font-comic text-friendly-dark">
               <p className="text-sm">{character.catchphrase}</p>
               <p className="text-xs text-gray-600">
-                Find all the matching pairs! Matches: {matches}/6 | Attempts: {attempts}
+                {t('memory.find_all_pairs')} {t('memory.pairs_found')}: {matches}/6 | {t('memory.attempts')}: {attempts}
               </p>
             </div>
           </div>
@@ -254,11 +254,11 @@ export default function MemoryGame() {
         <div className="flex justify-center items-center space-x-8 mb-6">
           <div className="flex items-center space-x-2">
             <Star className="text-sunny w-5 h-5" />
-            <span className="font-nunito font-bold">Matches: {matches}/6</span>
+            <span className="font-nunito font-bold">{t('memory.pairs_found')}: {matches}/6</span>
           </div>
           <div className="flex items-center space-x-2">
             <Trophy className="text-coral w-5 h-5" />
-            <span className="font-nunito font-bold">Attempts: {attempts}</span>
+            <span className="font-nunito font-bold">{t('memory.attempts')}: {attempts}</span>
           </div>
         </div>
 
@@ -270,7 +270,7 @@ export default function MemoryGame() {
             className="rounded-2xl px-6 py-3 flex items-center space-x-2"
           >
             <RotateCcw className="w-4 h-4" />
-            <span>New Game</span>
+            <span>{t('memory.new_game')}</span>
           </Button>
         </div>
 
@@ -291,24 +291,24 @@ export default function MemoryGame() {
               >
                 <div className="text-6xl mb-4">🎉</div>
                 <h3 className="font-fredoka text-3xl text-friendly-dark mb-4">
-                  ¡Fantástico!
+                  {t('memory.fantastic')}
                 </h3>
                 <p className="font-nunito text-lg text-gray-600 mb-6">
-                  You found all {matches} pairs in {attempts} attempts!
+                  {interpolate(t('memory.found_all_pairs'), { matches, attempts })}
                 </p>
                 <div className="space-y-3">
                   <Button
                     onClick={resetGame}
                     className="bg-mint text-white font-bold py-3 px-8 rounded-2xl w-full"
                   >
-                    Play Again
+                    {t('memory.play_again')}
                   </Button>
                   <Button
                     onClick={() => setGameCompleted(false)}
                     variant="outline"
                     className="rounded-2xl py-3 px-8 w-full"
                   >
-                    Close
+                    {t('common.close')}
                   </Button>
                 </div>
               </motion.div>
