@@ -10,7 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getRandomCharacter } from "@/lib/characters";
 import { audioManager } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
-import { useTranslation } from "@/lib/i18n";
+import { useTranslation, interpolate } from "@/lib/i18n";
 import type { VocabularyWord } from "@shared/schema";
 
 const DEFAULT_USER_ID = "default_user";
@@ -125,7 +125,7 @@ export default function Quiz() {
 
   if (isLoading) {
     return (
-      <GameLayout title="Loading Quiz..." color="sunny">
+      <GameLayout title={t('common.loading')} color="sunny">
         <div className="flex justify-center items-center h-64">
           <div className="animate-spin w-8 h-8 border-2 border-sunny border-t-transparent rounded-full"></div>
         </div>
@@ -135,10 +135,10 @@ export default function Quiz() {
 
   if (questions.length === 0) {
     return (
-      <GameLayout title="Quiz" color="sunny">
+      <GameLayout title={t('quiz.title')} color="sunny">
         <div className="text-center">
           <p className="font-nunito text-lg text-gray-600">
-            Not enough vocabulary words for a quiz. Please learn more words first!
+            {t('quiz.not_enough_words')}
           </p>
         </div>
       </GameLayout>
@@ -147,8 +147,8 @@ export default function Quiz() {
 
   return (
     <GameLayout
-      title="Fun Quiz"
-      subtitle="Test your Spanish knowledge!"
+      title={t('quiz.title')}
+      subtitle={t('quiz.subtitle')}
       currentQuestion={currentQuestionIndex + 1}
       totalQuestions={questions.length}
       color="sunny"
@@ -165,7 +165,7 @@ export default function Quiz() {
             <div className="font-comic text-friendly-dark">
               <p className="text-sm">{character.catchphrase}</p>
               <p className="text-xs text-gray-600">
-                Score: {score}/{currentQuestionIndex + (showResult ? 1 : 0)}
+                {t('quiz.score')}: {score}/{currentQuestionIndex + (showResult ? 1 : 0)}
               </p>
             </div>
           </div>
@@ -183,7 +183,7 @@ export default function Quiz() {
               {/* Question */}
               <div className="text-center mb-8">
                 <h4 className="font-fredoka text-3xl text-friendly-dark mb-6">
-                  What does this mean in Dutch?
+                  {t('quiz.what_does_mean')}
                 </h4>
                 
                 {/* Question Word */}
@@ -256,15 +256,15 @@ export default function Quiz() {
                     {selectedAnswer === currentQuestion.correctAnswer.id ? (
                       <div className="bg-success/20 rounded-2xl p-6">
                         <div className="text-4xl mb-2">🎉</div>
-                        <h3 className="font-fredoka text-2xl text-success mb-2">¡Correcto!</h3>
-                        <p className="font-nunito text-friendly-dark">Excellent work!</p>
+                        <h3 className="font-fredoka text-2xl text-success mb-2">{t('quiz.correct')}</h3>
+                        <p className="font-nunito text-friendly-dark">{t('feedback.excellent')}</p>
                       </div>
                     ) : (
                       <div className="bg-red-500/20 rounded-2xl p-6">
                         <div className="text-4xl mb-2">📚</div>
-                        <h3 className="font-fredoka text-2xl text-red-500 mb-2">Not quite!</h3>
+                        <h3 className="font-fredoka text-2xl text-red-500 mb-2">{t('quiz.not_quite')}</h3>
                         <p className="font-nunito text-friendly-dark">
-                          "{currentQuestion.word.spanish}" means "{currentQuestion.correctAnswer.dutch}"
+                          {interpolate(t('quiz.correct_answer'), { spanish: currentQuestion.word.spanish, dutch: currentQuestion.correctAnswer.dutch })}
                         </p>
                       </div>
                     )}
@@ -283,16 +283,16 @@ export default function Quiz() {
                 <div className="text-8xl mb-6">
                   {score >= questions.length * 0.8 ? "🏆" : score >= questions.length * 0.6 ? "🌟" : "📚"}
                 </div>
-                
+
                 <h2 className="font-fredoka text-4xl text-friendly-dark mb-4">
-                  ¡Quiz Completado!
+                  {t('quiz.completed')}
                 </h2>
                 
                 <div className="flex items-center justify-center space-x-6 mb-6">
                   <div className="flex items-center space-x-2">
                     <Star className="text-sunny w-6 h-6" />
                     <span className="font-nunito text-xl font-bold">
-                      Score: {score}/{questions.length}
+                      {t('quiz.score')}: {score}/{questions.length}
                     </span>
                   </div>
                   <div className="flex items-center space-x-2">
@@ -304,12 +304,11 @@ export default function Quiz() {
                 </div>
 
                 <p className="font-nunito text-lg text-gray-600 mb-8">
-                  {score >= questions.length * 0.8 
-                    ? "Outstanding! You're a Spanish superstar!" 
+                  {score >= questions.length * 0.8
+                    ? t('quiz.outstanding')
                     : score >= questions.length * 0.6
-                    ? "Great job! Keep practicing to improve even more!"
-                    : "Good effort! Practice makes perfect!"
-                  }
+                    ? t('quiz.great_job_message')
+                    : t('quiz.good_effort')}
                 </p>
 
                 <Button
@@ -317,7 +316,7 @@ export default function Quiz() {
                   className="bg-sunny text-white font-bold py-4 px-8 rounded-2xl flex items-center space-x-2 mx-auto"
                 >
                   <RotateCcw className="w-5 h-5" />
-                  <span>Take Quiz Again</span>
+                  <span>{t('quiz.take_again')}</span>
                 </Button>
               </div>
             </motion.div>

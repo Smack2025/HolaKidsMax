@@ -29,7 +29,18 @@
     "not_yet": "Nog niet",
     "next_card": "Volgende kaart",
     "well_done": "Goed gedaan!",
-    "review_complete": "Herziening voltooid!"
+    "review_complete": "Herziening voltooid!",
+    "tap_to_reveal": "Tik om te onthullen",
+    "what_does_mean": "Wat betekent dit?",
+    "means": "betekent",
+    "did_you_know": "Wist je dit?",
+    "fantastic": "Fantastisch!",
+    "great_job": "Goed gedaan!",
+    "its_okay": "Geeft niet!",
+    "keep_practicing": "Blijf oefenen!",
+    "no_words_title": "Geen woorden beschikbaar",
+    "no_words_message": "Geen woorden gevonden. Probeer het later opnieuw.",
+    "tip": "Tip: Probeer het woord hardop te zeggen voordat je de kaart omdraait!"
   },
   "memory": {
     "title": "Memory Game",
@@ -37,7 +48,11 @@
     "attempts": "Pogingen",
     "pairs_found": "Paren gevonden",
     "great_job": "Geweldig gedaan!",
-    "play_again": "Opnieuw spelen"
+    "play_again": "Opnieuw spelen",
+    "find_all_pairs": "Vind alle bijpassende paren!",
+    "new_game": "Nieuw spel",
+    "fantastic": "Fantastisch!",
+    "found_all_pairs": "Je vond alle {matches} paren in {attempts} pogingen!"
   },
   "quiz": {
     "title": "Quiz",
@@ -48,7 +63,17 @@
     "incorrect": "Niet juist",
     "final_score": "Eindresultaat",
     "well_done": "Goed gedaan!",
-    "try_again": "Probeer opnieuw"
+    "try_again": "Probeer opnieuw",
+    "not_enough_words": "Niet genoeg woorden voor een quiz. Leer eerst meer woorden!",
+    "score": "Score",
+    "what_does_mean": "Wat betekent dit in het Nederlands?",
+    "not_quite": "Niet helemaal!",
+    "correct_answer": "\"{spanish}\" betekent \"{dutch}\"",
+    "completed": "Quiz voltooid!",
+    "outstanding": "Uitstekend! Je bent een Spaanse superster!",
+    "great_job_message": "Goed gedaan! Blijf oefenen om nog beter te worden!",
+    "good_effort": "Goed geprobeerd! Oefening baart kunst!",
+    "take_again": "Quiz opnieuw doen"
   },
   "pronunciation": {
     "title": "Uitspraak Oefening",
