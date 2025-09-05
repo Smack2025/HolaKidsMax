@@ -16,6 +16,7 @@ export interface IStorage {
   getVocabularyWordsByCategory(category: string): Promise<VocabularyWord[]>;
   getVocabularyWord(id: string): Promise<VocabularyWord | undefined>;
   createVocabularyWord(word: InsertVocabularyWord): Promise<VocabularyWord>;
+  getCategories(): Promise<string[]>;
   
   // User progress methods
   getUserProgress(userId: string): Promise<UserProgress[]>;
@@ -114,8 +115,8 @@ export class MemStorage implements IStorage {
 
   async createVocabularyWord(insertWord: InsertVocabularyWord): Promise<VocabularyWord> {
     const id = randomUUID();
-    const word: VocabularyWord = { 
-      ...insertWord, 
+    const word: VocabularyWord = {
+      ...insertWord,
       id,
       imageUrl: insertWord.imageUrl || null,
       audioUrl: insertWord.audioUrl || null,
@@ -123,6 +124,12 @@ export class MemStorage implements IStorage {
     };
     this.vocabularyWords.set(id, word);
     return word;
+  }
+
+  async getCategories(): Promise<string[]> {
+    return Array.from(
+      new Set(Array.from(this.vocabularyWords.values()).map((word) => word.category))
+    );
   }
 
   async getUserProgress(userId: string): Promise<UserProgress[]> {
