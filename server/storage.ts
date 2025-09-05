@@ -53,7 +53,7 @@ export class MemStorage implements IStorage {
       // Load vocabulary from JSON file
       const fs = await import('fs');
       const path = await import('path');
-      const vocabPath = path.join(process.cwd(), 'client/src/data/spanish_vocab.json');
+      const vocabPath = path.resolve(__dirname, '../client/src/data/spanish_vocab.json');
       const vocabData = JSON.parse(fs.readFileSync(vocabPath, 'utf8'));
       
       // Process each theme and its vocabulary items
