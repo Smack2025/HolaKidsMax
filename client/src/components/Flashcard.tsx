@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 interface FlashcardProps {
   front: string;
@@ -15,53 +16,24 @@ export const Flashcard: React.FC<FlashcardProps> = ({ front, back, onFlip }) => 
   };
 
   return (
-    <div 
-      className="flashcard" 
+    <div
       onClick={handleFlip}
-      style={{
-        cursor: 'pointer',
-        perspective: '1000px',
-        width: '300px',
-        height: '200px',
-      }}
+      className="cursor-pointer [perspective:1000px] w-[300px] h-[200px]"
     >
-      <div style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        transform: isFlipped ? 'rotateY(180deg)' : '',
-        transformStyle: 'preserve-3d',
-        transition: 'transform 0.6s',
-      }}>
-        <div style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          backfaceVisibility: 'hidden',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'white',
-          borderRadius: '10px',
-          boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-          padding: '20px',
-        }}>
+      <div
+        className={cn(
+          'relative w-full h-full transition-transform duration-[600ms] [transform-style:preserve-3d]',
+          isFlipped && '[transform:rotateY(180deg)]',
+        )}
+      >
+        <div
+          className="absolute w-full h-full [backface-visibility:hidden] flex items-center justify-center bg-white rounded-[10px] shadow-[0_4px_8px_rgba(0,0,0,0.1)] p-5"
+        >
           {front}
         </div>
-        <div style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          backfaceVisibility: 'hidden',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: 'white',
-          borderRadius: '10px',
-          boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-          padding: '20px',
-          transform: 'rotateY(180deg)',
-        }}>
+        <div
+          className="absolute w-full h-full [backface-visibility:hidden] flex items-center justify-center bg-white rounded-[10px] shadow-[0_4px_8px_rgba(0,0,0,0.1)] p-5 [transform:rotateY(180deg)]"
+        >
           {back}
         </div>
       </div>
