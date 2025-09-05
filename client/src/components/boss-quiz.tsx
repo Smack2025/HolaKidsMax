@@ -124,23 +124,22 @@ export default function BossQuiz() {
     setShowResult(true);
 
     // Update recent attempts for difficulty adjustment
-    const newAttempts = [...recentAttempts, isCorrect];
-    setRecentAttempts(newAttempts);
+    setRecentAttempts(prev => [...prev, isCorrect]);
 
     if (isCorrect) {
-      setScore(score + Math.max(1, currentQuestion.difficulty)); // More points for harder words
+      setScore(prev => prev + Math.max(1, currentQuestion.difficulty)); // More points for harder words
       setMistakeCount(0);
       setShowDutchHint(false);
       audioManager.playSuccessSound();
     } else {
-      const newMistakeCount = mistakeCount + 1;
-      setMistakeCount(newMistakeCount);
-      
-      // Show Dutch hint after 2 mistakes if enabled
-      if (newMistakeCount >= 2 && difficultySettings.showDutchOnSecondMistake) {
-        setShowDutchHint(true);
-      }
-      
+      setMistakeCount(prev => {
+        const newCount = prev + 1;
+        if (newCount >= 2 && difficultySettings.showDutchOnSecondMistake) {
+          setShowDutchHint(true);
+        }
+        return newCount;
+      });
+
       audioManager.playErrorSound();
     }
 
@@ -153,14 +152,16 @@ export default function BossQuiz() {
 
     // Move to next question after delay
     setTimeout(() => {
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setSelectedAnswer(null);
-        setShowResult(false);
-        setShowDutchHint(false);
-      } else {
+      setCurrentQuestionIndex(prev => {
+        if (prev < questions.length - 1) {
+          setSelectedAnswer(null);
+          setShowResult(false);
+          setShowDutchHint(false);
+          return prev + 1;
+        }
         completeQuiz();
-      }
+        return prev;
+      });
     }, 2000);
   };
 

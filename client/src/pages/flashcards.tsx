@@ -59,11 +59,9 @@ export default function Flashcards() {
     setTimeout(() => {
       setFeedback(null);
       setShowAnswer(false);
-      if (currentWordIndex < words.length - 1) {
-        setCurrentWordIndex(currentWordIndex + 1);
-      } else {
-        setCurrentWordIndex(0); // Loop back to beginning
-      }
+      setCurrentWordIndex(prev =>
+        prev < words.length - 1 ? prev + 1 : 0
+      );
     }, 2000);
   };
 

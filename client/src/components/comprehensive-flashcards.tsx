@@ -110,8 +110,7 @@ export function ComprehensiveFlashcards({ category, maxCards = 10 }: FlashcardSe
     if (!currentWord) return;
 
     // Update recent attempts for difficulty adjustment
-    const newAttempts = [...recentAttempts, correct];
-    setRecentAttempts(newAttempts);
+    setRecentAttempts(prev => [...prev, correct]);
 
     // Update spaced repetition item
     let currentSpacedItem = spacedItems.find(item => item.wordId === currentWord.id);
@@ -120,30 +119,30 @@ export function ComprehensiveFlashcards({ category, maxCards = 10 }: FlashcardSe
     }
 
     const updatedItem = SpacedRepetition.updateItem(currentSpacedItem, correct);
-    const newSpacedItems = spacedItems.filter(item => item.wordId !== currentWord.id);
-    newSpacedItems.push(updatedItem);
-    setSpacedItems(newSpacedItems);
-
-    // Save to localStorage
-    try {
-      localStorage.setItem('spaced_items', JSON.stringify(newSpacedItems));
-    } catch (error) {
-      console.warn('Failed to save spaced items:', error);
-    }
+    setSpacedItems(prev => {
+      const updatedList = prev.filter(item => item.wordId !== currentWord.id);
+      updatedList.push(updatedItem);
+      try {
+        localStorage.setItem('spaced_items', JSON.stringify(updatedList));
+      } catch (error) {
+        console.warn('Failed to save spaced items:', error);
+      }
+      return updatedList;
+    });
 
     if (correct) {
       setMistakeCount(0);
       setShowDutchHint(false);
       audioManager.playSuccessSound();
     } else {
-      const newMistakeCount = mistakeCount + 1;
-      setMistakeCount(newMistakeCount);
-      
-      // Show Dutch hint after 2 mistakes if enabled
-      if (newMistakeCount >= 2 && difficultySettings.showDutchOnSecondMistake) {
-        setShowDutchHint(true);
-      }
-      
+      setMistakeCount(prev => {
+        const newCount = prev + 1;
+        if (newCount >= 2 && difficultySettings.showDutchOnSecondMistake) {
+          setShowDutchHint(true);
+        }
+        return newCount;
+      });
+
       audioManager.playErrorSound();
     }
 
@@ -156,13 +155,15 @@ export function ComprehensiveFlashcards({ category, maxCards = 10 }: FlashcardSe
 
     // Move to next card after delay
     setTimeout(() => {
-      if (currentCardIndex < sessionWords.length - 1) {
-        setCurrentCardIndex(currentCardIndex + 1);
-        setIsFlipped(false);
-        setShowDutchHint(false);
-      } else {
+      setCurrentCardIndex(prev => {
+        if (prev < sessionWords.length - 1) {
+          setIsFlipped(false);
+          setShowDutchHint(false);
+          return prev + 1;
+        }
         setSessionComplete(true);
-      }
+        return prev;
+      });
     }, 1500);
   };
 

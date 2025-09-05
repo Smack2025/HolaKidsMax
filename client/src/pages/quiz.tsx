@@ -92,7 +92,7 @@ export default function Quiz() {
     const isCorrect = optionId === currentQuestion.correctAnswer.id;
     
     if (isCorrect) {
-      setScore(score + 1);
+      setScore(prev => prev + 1);
       audioManager.playSuccessSound();
     } else {
       audioManager.playErrorSound();
@@ -109,13 +109,15 @@ export default function Quiz() {
 
     // Auto advance after showing result
     setTimeout(() => {
-      if (currentQuestionIndex < questions.length - 1) {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
-        setSelectedAnswer(null);
-        setShowResult(false);
-      } else {
+      setCurrentQuestionIndex(prev => {
+        if (prev < questions.length - 1) {
+          setSelectedAnswer(null);
+          setShowResult(false);
+          return prev + 1;
+        }
         setGameCompleted(true);
-      }
+        return prev;
+      });
     }, 2500);
   };
 
