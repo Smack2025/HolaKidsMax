@@ -89,7 +89,7 @@ export default function Pronunciation() {
 
     if (isCorrect) {
       setFeedback("correct");
-      setScore(score + 1);
+      setScore(prev => prev + 1);
       audioManager.playSuccessSound();
       
       updateProgressMutation.mutate({
@@ -112,11 +112,9 @@ export default function Pronunciation() {
     setTimeout(() => {
       setFeedback(null);
       setSpokenText("");
-      if (currentWordIndex < words.length - 1) {
-        setCurrentWordIndex(currentWordIndex + 1);
-      } else {
-        setCurrentWordIndex(0); // Loop back
-      }
+      setCurrentWordIndex(prev =>
+        prev < words.length - 1 ? prev + 1 : 0
+      );
     }, 3000);
   };
 

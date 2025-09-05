@@ -105,7 +105,7 @@ export default function MemoryGame() {
     ));
 
     if (newFlippedCards.length === 2) {
-      setAttempts(attempts + 1);
+      setAttempts(prev => prev + 1);
       
       const [firstCardId, secondCardId] = newFlippedCards;
       const firstCard = cards.find(c => c.id === firstCardId);
@@ -116,12 +116,18 @@ export default function MemoryGame() {
         audioManager.playSuccessSound();
         
         setTimeout(() => {
-          setCards(prev => prev.map(c => 
-            c.wordId === firstCard.wordId 
+          setCards(prev => prev.map(c =>
+            c.wordId === firstCard.wordId
               ? { ...c, matched: true, flipped: true }
               : c
           ));
-          setMatches(matches + 1);
+          setMatches(prev => {
+            const updated = prev + 1;
+            if (updated === 6) {
+              setGameCompleted(true);
+            }
+            return updated;
+          });
           setFlippedCards([]);
 
           // Update progress for matched word
@@ -130,11 +136,6 @@ export default function MemoryGame() {
             wordId: firstCard.wordId,
             correct: true
           });
-
-          // Check if game is completed
-          if (matches + 1 === 6) {
-            setGameCompleted(true);
-          }
         }, 1000);
       } else {
         // No match
