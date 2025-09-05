@@ -12,8 +12,7 @@ import { audioManager } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { SPANISH_VOCABULARY, getRandomWords } from "@/data/spanish-vocabulary";
 import type { VocabularyWord } from "@/data/spanish-vocabulary";
-
-const DEFAULT_USER_ID = "default_user";
+import { DEFAULT_USER_ID } from "../lib/constants";
 
 interface FlashcardSessionProps {
   category?: string;

@@ -2,6 +2,7 @@ import { sql } from "drizzle-orm";
 import { pgTable, text, varchar, integer, boolean, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
+import { DEFAULT_USER_ID } from "../client/src/lib/constants";
 
 export const vocabularyWords = pgTable("vocabulary_words", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
@@ -15,7 +16,7 @@ export const vocabularyWords = pgTable("vocabulary_words", {
 
 export const userProgress = pgTable("user_progress", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").notNull().default("default_user"),
+  userId: varchar("user_id").notNull().default(DEFAULT_USER_ID),
   wordId: varchar("word_id").notNull(),
   timesCorrect: integer("times_correct").notNull().default(0),
   timesIncorrect: integer("times_incorrect").notNull().default(0),
@@ -25,7 +26,7 @@ export const userProgress = pgTable("user_progress", {
 
 export const gameSession = pgTable("game_session", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").notNull().default("default_user"),
+  userId: varchar("user_id").notNull().default(DEFAULT_USER_ID),
   gameType: text("game_type").notNull(),
   score: integer("score").notNull().default(0),
   totalQuestions: integer("total_questions").notNull().default(0),
@@ -36,7 +37,7 @@ export const gameSession = pgTable("game_session", {
 
 export const spacedRepetitionItems = pgTable("spaced_repetition_items", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").notNull().default("default_user"),
+  userId: varchar("user_id").notNull().default(DEFAULT_USER_ID),
   wordId: varchar("word_id").notNull(),
   level: integer("level").notNull().default(0), // 0-6 spaced repetition level
   nextDue: text("next_due").notNull(),
@@ -48,7 +49,7 @@ export const spacedRepetitionItems = pgTable("spaced_repetition_items", {
 
 export const achievements = pgTable("achievements", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").notNull().default("default_user"),
+  userId: varchar("user_id").notNull().default(DEFAULT_USER_ID),
   achievementType: text("achievement_type").notNull(),
   category: text("category"),
   unlockedAt: text("unlocked_at").notNull(),
@@ -57,7 +58,7 @@ export const achievements = pgTable("achievements", {
 
 export const userStats = pgTable("user_stats", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  userId: varchar("user_id").notNull().default("default_user"),
+  userId: varchar("user_id").notNull().default(DEFAULT_USER_ID),
   totalStars: integer("total_stars").notNull().default(0),
   currentStreak: integer("current_streak").notNull().default(0),
   longestStreak: integer("longest_streak").notNull().default(0),

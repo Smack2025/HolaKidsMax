@@ -9,6 +9,7 @@ import {
   type InsertUserStats
 } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { DEFAULT_USER_ID } from "../client/src/lib/constants";
 
 export interface IStorage {
   // Vocabulary methods
@@ -171,7 +172,7 @@ export class MemStorage implements IStorage {
       ...insertSession, 
       id,
       duration: insertSession.duration || 0,
-      userId: insertSession.userId || "default_user",
+      userId: insertSession.userId || DEFAULT_USER_ID,
       score: insertSession.score || 0,
       totalQuestions: insertSession.totalQuestions || 0,
       correctAnswers: insertSession.correctAnswers || 0,

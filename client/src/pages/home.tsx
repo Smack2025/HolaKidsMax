@@ -10,8 +10,7 @@ import { useTranslation } from "@/lib/i18n";
 import { CHARACTERS } from "@/lib/characters";
 import { VOCABULARY_CATEGORIES, getCategoryColor } from "@/lib/vocabulary";
 import type { UserStats } from "@shared/schema";
-
-const DEFAULT_USER_ID = "default_user";
+import { DEFAULT_USER_ID } from "../lib/constants";
 
 interface CategoryProgress {
   name: string;
