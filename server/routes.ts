@@ -107,7 +107,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const allWords = await storage.getVocabularyWords();
       const userProgress = await storage.getUserProgress(userId);
       
-      const categories = ["greetings", "numbers_1_10", "colors", "animals", "food", "family", "body_parts", "weather"];
+      const categories = await storage.getCategories();
       const categoryProgress = categories.map(category => {
         const categoryWords = allWords.filter(word => word.category === category);
         const completedWords = categoryWords.filter(word => 
