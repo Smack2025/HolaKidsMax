@@ -11,8 +11,7 @@ import { audioManager } from "@/lib/audio";
 import { apiRequest } from "@/lib/queryClient";
 import { useTranslation } from "@/lib/i18n";
 import type { VocabularyWord } from "@shared/schema";
-
-const DEFAULT_USER_ID = "default_user";
+import { DEFAULT_USER_ID } from "../lib/constants";
 
 interface MemoryCard {
   id: string;

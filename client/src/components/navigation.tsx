@@ -4,8 +4,7 @@ import { Star, Settings, Home, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "@/lib/i18n";
 import type { UserStats } from "@shared/schema";
-
-const DEFAULT_USER_ID = "default_user";
+import { DEFAULT_USER_ID } from "../lib/constants";
 
 export function Navigation() {
   const [location] = useLocation();
