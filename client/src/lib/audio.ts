@@ -1,3 +1,36 @@
+interface SpeechRecognitionConstructor {
+  new (): SpeechRecognition;
+}
+
+interface SpeechRecognition extends EventTarget {
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+  maxAlternatives: number;
+  onstart: ((ev: Event) => void) | null;
+  onresult: ((ev: SpeechRecognitionEvent) => void) | null;
+  onerror: ((ev: SpeechRecognitionErrorEvent) => void) | null;
+  onend: ((ev: Event) => void) | null;
+  start(): void;
+  stop(): void;
+}
+
+interface SpeechRecognitionEvent extends Event {
+  results: SpeechRecognitionResultList;
+}
+
+interface SpeechRecognitionErrorEvent extends Event {
+  error: string;
+}
+
+declare global {
+  interface Window {
+    webkitAudioContext?: typeof AudioContext;
+    SpeechRecognition?: SpeechRecognitionConstructor;
+    webkitSpeechRecognition?: SpeechRecognitionConstructor;
+  }
+}
+
 interface TTSOptions {
   lang?: string;
   rate?: number;
@@ -30,7 +63,7 @@ export class AudioManager {
     if (this.isInitialized) return;
     
     try {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+      this.audioContext = new (window.AudioContext || window.webkitAudioContext!)();
       this.isInitialized = true;
     } catch (error) {
       console.warn("Web Audio API not supported:", error);
@@ -126,13 +159,12 @@ export class AudioManager {
 
     return new Promise((resolve, reject) => {
       try {
-        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        const SpeechRecognitionClass = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognitionClass) {
           reject(new Error('Speech recognition not supported'));
           return;
         }
-
-        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-        const recognition = new SpeechRecognition();
+        const recognition = new SpeechRecognitionClass();
 
         recognition.continuous = continuous;
         recognition.interimResults = false;
@@ -157,13 +189,13 @@ export class AudioManager {
           }, timeout);
         };
 
-        recognition.onresult = (event: any) => {
+        recognition.onresult = (event: SpeechRecognitionEvent) => {
           cleanup();
           const result = event.results[0][0].transcript;
           resolve(result.toLowerCase().trim());
         };
 
-        recognition.onerror = (event: any) => {
+        recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
           cleanup();
           reject(new Error(`Speech recognition error: ${event.error}`));
         };
